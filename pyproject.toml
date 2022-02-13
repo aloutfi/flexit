@@ -9,6 +9,7 @@ python = "^3.10"
 psycopg2 = "^2.9.3"
 SQLAlchemy = "^1.4.31"
 python-decouple = "^3.6"
+pydantic = "^1.9.0"
 
 [tool.poetry.dev-dependencies]
 ipykernel = "^6.9.0"
