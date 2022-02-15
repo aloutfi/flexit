@@ -81,7 +81,27 @@ def person_directed_and_acted_in_same_show(person: str) -> list[dto.Show | None]
 
 def shows_added_on_date(date: datetime.date) -> list[dto.Show | None]:
     """Return shows that were added on a given date."""
+    with Session(engine) as session:
+        return session.query(models.Show).filter_by(date_added=date).all()
 
 
 def high_level_stats() -> dict:
     """Return number of tv shows, number of movies, total number of categories, shows released by year."""
+    with Session(engine) as session:
+        shows = session.query(models.Show)
+        tv_shows = shows.filter_by(type="TV Show")
+        movies = shows.filter_by(type="Movie")
+        movies_per_year = {}
+        for year in sorted(
+            [
+                show.release_year
+                for show in shows.distinct(models.Show.release_year).all()
+            ]
+        ):
+            movies_per_year[year] = len(shows.filter_by(release_year=year).all())
+        return {
+            "tv_shows": len(tv_shows.all()),
+            "movies": len(movies.all()),
+            "categories": len(session.query(models.Category).all()),
+            "movies_per_year": movies_per_year,
+        }

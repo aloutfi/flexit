@@ -1,4 +1,4 @@
-from datetime import datetime
+import dateparser
 import random
 import pytest
 from flexit import queries
@@ -59,5 +59,19 @@ class TestQueries:
         shows = queries.person_directed_and_acted_in_same_show(person)
         assert all(show.director.person == person for show in shows)
 
-    def test_shows_added_on_date(self, date: datetime.date):
+    @pytest.mark.parametrize(
+        "a_date, expected_val",
+        [("2021-02-14", 1), ("Dec 1 2019", 27), ("Fri, 12 Dec 201 10:55:50", 10)],
+    )
+    def test_shows_added_on_date(self, a_date, expected_val):
         """Ensure expected results for test_shows_added_on_date query."""
+        shows = queries.shows_added_on_date(dateparser.parse(a_date))
+        assert len(shows) == expected_val
+
+    def test_high_level_stats(self):
+        """Ensure high level stats function produces the expected results."""
+        stats = queries.high_level_stats()
+        assert stats["tv_shows"] >= 2676
+        assert stats["movies"] >= 6131
+        assert len(stats["movies_per_year"]) >= 74
+        assert stats["categories"] == 42
