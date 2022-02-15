@@ -51,6 +51,7 @@ def person_is_director_and_actor(person: str) -> bool:
                 "person is not in database, and therefore not an actor or director."
             )
 
+        # Do show table first to support short circuiting ShowCastIntersection query
         if (
             session.query(models.Show).filter_by(director=person).first()
             and session.query(models.ShowCastIntersection)
