@@ -1,5 +1,4 @@
-from datetime import datetime
-
+import dateparser
 from flexit.config import engine
 from flexit import models, dto
 import sqlalchemy
@@ -31,7 +30,10 @@ def shows_in_category(
         raise NotImplementedError("Specified range is too great.")
 
     with Session(engine) as session:
-        category = session.query(models.Category).filter_by(category=category).one()
+        try:
+            category = session.query(models.Category).filter_by(category=category).one()
+        except sqlalchemy.exc.NoResultFound:
+            raise ValueError("The Category Doesn't exist.")
         return [
             dto.Show.from_orm(result.show)
             for result in session.query(models.ShowCategoryIntersection)
@@ -54,7 +56,7 @@ def person_is_director_and_actor(person: str) -> bool:
         is_director = session.query(models.Show).filter_by(director=person)
         is_actor = session.query(models.ShowCastIntersection).filter_by(person=person)
 
-        # Do show table first to support short circuiting ShowCastIntersection query
+        # Do show table first to support short-circuiting ShowCastIntersection query
         if is_director.first() and is_actor.first():
             return True
     return False
@@ -78,10 +80,14 @@ def person_directed_and_acted_in_same_show(person: str) -> list[dto.Show | None]
         ]
 
 
-def shows_added_on_date(date: datetime.date) -> list[dto.Show | None]:
+def shows_added_on_date(date: str) -> list[dto.Show | None]:
     """Return shows that were added on a given date."""
     with Session(engine) as session:
-        return session.query(models.Show).filter_by(date_added=date).all()
+        return (
+            session.query(models.Show)
+            .filter_by(date_added=dateparser.parse(date))
+            .all()
+        )
 
 
 def high_level_stats() -> dict:
