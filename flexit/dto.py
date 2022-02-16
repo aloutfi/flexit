@@ -3,7 +3,7 @@ import datetime
 
 
 class Category(BaseModel):
-    category_id: int
+    category_id: int | None
     category: str
 
     class Config:
@@ -11,7 +11,7 @@ class Category(BaseModel):
 
 
 class Person(BaseModel):
-    person_id: int
+    person_id: int | None
     person: str
 
     class Config:
@@ -19,7 +19,7 @@ class Person(BaseModel):
 
 
 class Show(BaseModel):
-    show_id: str
+    show_id: str | None
     type: str
     title: str
     director: Person | None
@@ -29,6 +29,8 @@ class Show(BaseModel):
     rating: str | None
     duration: str | None
     description: str
+    categories: list[Category] | None = None
+    actors: list[Person] | None = None
 
     class Config:
         orm_mode = True
