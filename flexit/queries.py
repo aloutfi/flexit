@@ -1,7 +1,7 @@
 import dateparser
+import sqlalchemy
 from flexit.config import engine
 from flexit import models, dto
-import sqlalchemy
 from sqlalchemy.orm import Session
 
 
