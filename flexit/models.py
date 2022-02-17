@@ -45,7 +45,7 @@ class Show(Base):
     duration = Column(Text)
     description = Column(Text)
 
-    director = relationship("Person")
+    director = relationship("Person", lazy="joined")
 
 
 class ShowCastIntersection(Base):
@@ -74,5 +74,5 @@ class ShowCategoryIntersection(Base):
         server_default=text("nextval('show_category_intersection_id_seq'::regclass)"),
     )
 
-    category = relationship("Category")
+    category = relationship("Category", lazy="joined")
     show = relationship("Show")
