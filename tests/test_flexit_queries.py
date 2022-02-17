@@ -1,4 +1,3 @@
-import dateparser
 import random
 import pytest
 from flexit import queries
@@ -39,9 +38,15 @@ class TestQueries:
         shows = queries.shows_in_category(category, start, stop)
         assert len(shows) == abs(start - stop)
 
-    def test_flunk_unhandled_test_show_is_in_category_queries(self):
+    def test_flunk_over_range_shows_is_in_category_queries(self):
+        """Ensure max pagination range check works correctly."""
         with pytest.raises(NotImplementedError):
-            queries.shows_in_category("Eric Cartman", 0, 101)
+            queries.shows_in_category("Independent Movies", 0, 101)
+
+    def test_flunk_non_existent_category(self):
+        """Ensure graceful handling of shows_in_category query if category doesn't exist."""
+        with pytest.raises(ValueError):
+            queries.shows_in_category("Eric Cartman", 0, 20)
 
     @pytest.mark.parametrize(
         "person, is_actor_and_director",
@@ -61,11 +66,11 @@ class TestQueries:
 
     @pytest.mark.parametrize(
         "a_date, expected_val",
-        [("2021-02-14", 1), ("Dec 1 2019", 27), ("Fri, 12 Dec 201 10:55:50", 10)],
+        [("2021-02-14", 1), ("Dec 1 2019", 27), ("Fri, 12 Dec 201 10:55:50", 11)],
     )
     def test_shows_added_on_date(self, a_date, expected_val):
         """Ensure expected results for test_shows_added_on_date query."""
-        shows = queries.shows_added_on_date(dateparser.parse(a_date))
+        shows = queries.shows_added_on_date(a_date)
         assert len(shows) == expected_val
 
     def test_high_level_stats(self):
@@ -74,4 +79,4 @@ class TestQueries:
         assert stats["tv_shows"] >= 2676
         assert stats["movies"] >= 6131
         assert len(stats["movies_per_year"]) >= 74
-        assert stats["categories"] == 42
+        assert stats["categories"] >= 42
