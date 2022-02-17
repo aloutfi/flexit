@@ -14,7 +14,6 @@ class TestCreation:
         person = dto.Person(person=names.get_full_name())
         person_record = creation.create_person(person)
         assert person.person == person_record.person
-        assert person_record.person_id
 
     def test_flunk_create_category(self):
         category = dto.Category(category="TV Thrillers")

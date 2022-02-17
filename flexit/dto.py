@@ -3,23 +3,25 @@ import datetime
 
 
 class Category(BaseModel):
-    category_id: int | None
+    _category_id: int | None
     category: str
 
     class Config:
         orm_mode = True
+        underscore_attrs_are_private = True
 
 
 class Person(BaseModel):
-    person_id: int | None
+    _person_id: int | None
     person: str
 
     class Config:
         orm_mode = True
+        underscore_attrs_are_private = True
 
 
 class Show(BaseModel):
-    show_id: str | None
+    _show_id: str | None
     type: str
     title: str
     director: Person | None
@@ -34,3 +36,4 @@ class Show(BaseModel):
 
     class Config:
         orm_mode = True
+        underscore_attrs_are_private = True
