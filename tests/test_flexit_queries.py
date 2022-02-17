@@ -66,7 +66,7 @@ class TestQueries:
 
     @pytest.mark.parametrize(
         "a_date, expected_val",
-        [("2021-02-14", 1), ("Dec 1 2019", 27), ("Fri, 12 Dec 201 10:55:50", 10)],
+        [("2021-02-14", 1), ("Dec 1 2019", 27), ("Fri, 12 Dec 201 10:55:50", 11)],
     )
     def test_shows_added_on_date(self, a_date, expected_val):
         """Ensure expected results for test_shows_added_on_date query."""
