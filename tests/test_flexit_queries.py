@@ -79,4 +79,4 @@ class TestQueries:
         assert stats["tv_shows"] >= 2676
         assert stats["movies"] >= 6131
         assert len(stats["movies_per_year"]) >= 74
-        assert stats["categories"] == 42
+        assert stats["categories"] >= 42
