@@ -1,2 +1,2 @@
 [settings]
-DATABASE_URL=
+DATABASE_URL=postgresql://postgres:pass@localhost/flexit_db
