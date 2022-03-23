@@ -26,4 +26,10 @@ poetry install
 
 cp settings.ini.in settings.ini
 ```
-Then, set the `DATABASE_URL` in the `settings.ini` file.
+#### Database access
+The system is configured to run on a postgres database. You can configure local setup via docker-compose
+```bash
+docker-compose up
+```
+
+If using your own solution, set the `DATABASE_URL` in the `settings.ini` file if you are not using the docker-compose setup..
