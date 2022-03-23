@@ -50,6 +50,7 @@ jobs:
       - name: Run tests
         run: |
           source .venv/bin/activate
+          python -c 'from flexit.config import init_db; init_db(True)'
           pytest -v tests/
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
