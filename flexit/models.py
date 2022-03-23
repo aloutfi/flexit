@@ -13,7 +13,7 @@ class Category(Base):
         SmallInteger,
         primary_key=True,
         unique=True,
-        server_default=text("nextval('categories_category_id_seq'::regclass)"),
+        autoincrement=True
     )
     category = Column(Text, nullable=False)
 
@@ -24,7 +24,7 @@ class Person(Base):
     person_id = Column(
         Integer,
         primary_key=True,
-        server_default=text("nextval('persons_person_id_seq'::regclass)"),
+        autoincrement=True
     )
     person = Column(Text, nullable=False)
 
@@ -33,7 +33,7 @@ class Show(Base):
     __tablename__ = "shows"
 
     show_id = Column(
-        Text, primary_key=True, unique=True, server_default=text("''::text")
+        Integer, primary_key=True, unique=True, autoincrement=True
     )
     type = Column(Text)
     title = Column(Text)
@@ -56,7 +56,7 @@ class ShowCastIntersection(Base):
     id = Column(
         Integer,
         primary_key=True,
-        server_default=text("nextval('show_cast_intersection_id_seq'::regclass)"),
+        autoincrement=True
     )
 
     person = relationship("Person")
@@ -71,7 +71,7 @@ class ShowCategoryIntersection(Base):
     id = Column(
         Integer,
         primary_key=True,
-        server_default=text("nextval('show_category_intersection_id_seq'::regclass)"),
+        autoincrement=True
     )
 
     category = relationship("Category", lazy="joined")

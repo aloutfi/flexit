@@ -6,9 +6,21 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        python-version: [3.10.2]
-        poetry-version: [1.1.13]
+        python-version: [ 3.10.2 ]
+        poetry-version: [ 1.1.13 ]
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_PASSWORD: pass
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
     steps:
       - uses: actions/checkout@v2
       - name: Set up python
@@ -38,6 +50,7 @@ jobs:
       - name: Run tests
         run: |
           source .venv/bin/activate
+          python -c 'from flexit.config import init_db; init_db(True)'
           pytest -v tests/
         env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          DATABASE_URL: postgresql://postgres:pass@localhost/flexit_db
