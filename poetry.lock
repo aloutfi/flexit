@@ -536,7 +536,7 @@ diagrams = ["jinja2", "railroad-diagrams"]
 
 [[package]]
 name = "pytest"
-version = "7.1.1"
+version = "7.1.2"
 description = "pytest: simple powerful testing with Python"
 category = "dev"
 optional = false
@@ -789,7 +789,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "5b7651e00183773b139cfc0b37f2831c201339db8ee1d5d7572dce677efd4051"
+content-hash = "fafe104b1c5115e1b01d7eeb4b6a5e50bea0282280346e5f492ca302b9bf2823"
 
 [metadata.files]
 appnope = [
@@ -1225,8 +1225,8 @@ pyparsing = [
     {file = "pyparsing-3.0.7.tar.gz", hash = "sha256:18ee9022775d270c55187733956460083db60b37d0d0fb357445f3094eed3eea"},
 ]
 pytest = [
-    {file = "pytest-7.1.1-py3-none-any.whl", hash = "sha256:92f723789a8fdd7180b6b06483874feca4c48a5c76968e03bb3e7f806a1869ea"},
-    {file = "pytest-7.1.1.tar.gz", hash = "sha256:841132caef6b1ad17a9afde46dc4f6cfa59a05f9555aae5151f73bdf2820ca63"},
+    {file = "pytest-7.1.2-py3-none-any.whl", hash = "sha256:13d0e3ccfc2b6e26be000cb6568c832ba67ba32e719443bfe725814d3c42433c"},
+    {file = "pytest-7.1.2.tar.gz", hash = "sha256:a06a0425453864a270bc45e71f783330a7428defb4230fb5e6a731fde06ecd45"},
 ]
 pytest-postgresql = [
     {file = "pytest-postgresql-4.1.1.tar.gz", hash = "sha256:144d6af4000641decb1f0e8025d9bfdd4a0572f418c5fec7ef409b51b991295d"},
