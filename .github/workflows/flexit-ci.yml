@@ -50,7 +50,7 @@ jobs:
       - name: Run tests
         run: |
           source .venv/bin/activate
-          python -c 'from flexit.config import init_db; init_db(True)'
+          python -c 'from config import init_db; init_db(True)'
           pytest -v tests/
         env:
           DATABASE_URL: postgresql://postgres:pass@localhost/flexit_db
