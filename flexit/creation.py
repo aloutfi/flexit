@@ -1,6 +1,7 @@
 from sqlalchemy.orm import Session
+
+from flexit import dto, models
 from flexit.config import engine
-from flexit import models, dto
 
 
 def _get_record_if_exists(

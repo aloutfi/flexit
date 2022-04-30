@@ -1,5 +1,6 @@
-import pytest
 import names
+import pytest
+
 from flexit import creation, dto
 
 

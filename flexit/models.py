@@ -1,6 +1,6 @@
-from sqlalchemy import Column, Date, ForeignKey, Integer, SmallInteger, Text, text
-from sqlalchemy.orm import relationship
+from sqlalchemy import Column, Date, ForeignKey, Integer, SmallInteger, Text
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import relationship
 
 Base = declarative_base()
 metadata = Base.metadata
@@ -10,10 +10,7 @@ class Category(Base):
     __tablename__ = "categories"
 
     category_id = Column(
-        SmallInteger,
-        primary_key=True,
-        unique=True,
-        autoincrement=True
+        SmallInteger, primary_key=True, unique=True, autoincrement=True
     )
     category = Column(Text, nullable=False)
 
@@ -21,20 +18,14 @@ class Category(Base):
 class Person(Base):
     __tablename__ = "persons"
 
-    person_id = Column(
-        Integer,
-        primary_key=True,
-        autoincrement=True
-    )
+    person_id = Column(Integer, primary_key=True, autoincrement=True)
     person = Column(Text, nullable=False)
 
 
 class Show(Base):
     __tablename__ = "shows"
 
-    show_id = Column(
-        Integer, primary_key=True, unique=True, autoincrement=True
-    )
+    show_id = Column(Integer, primary_key=True, unique=True, autoincrement=True)
     type = Column(Text)
     title = Column(Text)
     director_id = Column(ForeignKey("persons.person_id"))
@@ -53,11 +44,7 @@ class ShowCastIntersection(Base):
 
     show_id = Column(ForeignKey("shows.show_id"))
     person_id = Column(ForeignKey("persons.person_id"))
-    id = Column(
-        Integer,
-        primary_key=True,
-        autoincrement=True
-    )
+    id = Column(Integer, primary_key=True, autoincrement=True)
 
     person = relationship("Person")
     show = relationship("Show")
@@ -68,11 +55,7 @@ class ShowCategoryIntersection(Base):
 
     show_id = Column(ForeignKey("shows.show_id"))
     category_id = Column(ForeignKey("categories.category_id"))
-    id = Column(
-        Integer,
-        primary_key=True,
-        autoincrement=True
-    )
+    id = Column(Integer, primary_key=True, autoincrement=True)
 
     category = relationship("Category", lazy="joined")
     show = relationship("Show")

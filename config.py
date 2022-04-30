@@ -1,9 +1,10 @@
-from sqlalchemy.exc import IntegrityError
-from sqlalchemy_utils import database_exists
 import pandas as pd
 from decouple import config as env_config
-from sqlalchemy.orm import Session
 from sqlalchemy import create_engine
+from sqlalchemy.exc import IntegrityError
+from sqlalchemy.orm import Session
+from sqlalchemy_utils import database_exists
+
 from flexit.models import Base
 
 DATABASE_URL = env_config("DATABASE_URL")
