@@ -19,12 +19,16 @@ pip install https://github.com/aloutfi/flexit/raw/main/dist/flexit-1.0.0-py3-non
 Then, add the `DATABASE_URL` as an environment variable.
 
 ## Development
-```bash
-poetry install
-cp settings.ini.in settings.ini
-```
-### Database provisioning 
-The system is configured to run on a postgres database. You can configure local setup via docker-compose
+
+- Install python dependencies: `poetry install`
+- copy environment variables so you can safely add secrets if necessary: `cp settings.ini.in settings.ini`
+- build the database: `make build`
+  - You can rebuild the database with `make rebuild`
+
+#### If you do not wish to use the Makefile...
+
+If you do not wish to use the Makefile, you can configure local setup via docker-compose
+
 ```bash
 docker-compose up
 ```
