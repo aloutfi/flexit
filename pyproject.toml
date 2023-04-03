@@ -16,7 +16,7 @@ SQLAlchemy-Utils = "^0.40.0"
 [tool.poetry.dev-dependencies]
 ipykernel = "^6.13.1"
 pytest = "^7.1.2"
-pandas = "^1.4.2"
+pandas = "^2.0.0"
 names = "^0.3.0"
 pytest-postgresql = "^4.1.1"
 
