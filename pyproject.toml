@@ -14,7 +14,7 @@ dateparser = "^1.1.1"
 SQLAlchemy-Utils = "^0.42.0"
 
 [tool.poetry.dev-dependencies]
-ipykernel = "^6.13.1"
+ipykernel = "^7.0.0"
 pytest = "^8.0.0"
 pandas = "^2.0.0"
 names = "^0.3.0"
