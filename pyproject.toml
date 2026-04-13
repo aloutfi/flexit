@@ -10,7 +10,7 @@ psycopg2 = "^2.9.11"
 SQLAlchemy = "^2.0.0"
 python-decouple = "^3.6"
 pydantic = "^2.0"
-dateparser = "^1.1.1"
+dateparser = "^1.4.0"
 SQLAlchemy-Utils = "^0.42.0"
 
 [tool.poetry.dev-dependencies]
