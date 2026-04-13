@@ -6,7 +6,7 @@ authors = ["Andrew Loutfi <aloutfi@umn.edu>"]
 
 [tool.poetry.dependencies]
 python = "^3.10"
-psycopg2 = "^2.9.3"
+psycopg2 = "^2.9.11"
 SQLAlchemy = "^2.0.0"
 python-decouple = "^3.6"
 pydantic = "^2.0"
